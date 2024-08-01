@@ -12,7 +12,7 @@ import pygame, sys, time, random
 # Hard      ->  40
 # Harder    ->  60
 # Impossible->  120
-difficulty = 25
+difficulty = 10
 
 # Window size
 frame_size_x = 720
@@ -58,6 +58,37 @@ change_to = direction
 
 score = 0
 
+def gameRepeat():
+    # Window size
+    frame_size_x = 720
+    frame_size_y = 480
+    pygame.display.set_caption('Snake Eater')
+    game_window = pygame.display.set_mode((frame_size_x, frame_size_y))
+
+
+    # Colors (R, G, B)
+    black = pygame.Color(0, 0, 0)
+    white = pygame.Color(255, 255, 255)
+    red = pygame.Color(255, 0, 0)
+    green = pygame.Color(0, 255, 0)
+    blue = pygame.Color(0, 0, 255)
+
+
+    # FPS (frames per second) controller
+    fps_controller = pygame.time.Clock()
+
+
+    # Game variables
+    snake_pos = [100, 50]
+    snake_body = [[100, 50], [100-10, 50], [100-(2*10), 50]]
+
+    food_pos = [random.randrange(1, (frame_size_x//10)) * 10, random.randrange(1, (frame_size_y//10)) * 10]
+    food_spawn = True
+
+    direction = 'RIGHT'
+    change_to = direction
+
+    score = 0
 
 # Game Over
 def game_over():
@@ -70,8 +101,8 @@ def game_over():
     show_score(0, red, 'times', 20)
     pygame.display.flip()
     time.sleep(3)
-    pygame.quit()
-    sys.exit()
+    #pygame.quit()
+    #sys.exit()
 
 
 # Score
@@ -156,8 +187,28 @@ while True:
     # Getting out of bounds
     if snake_pos[0] < 0 or snake_pos[0] > frame_size_x-10:
         game_over()
+        choice = input('Do you want to continue! Enter 1 for continue! and 0 for exit!')
+        if(choice == '1'):
+            pygame.display.update()
+            gameRepeat()
+            continue
+        else:
+            exit()
+            #pygame.quit()
+            #sys.exit()
+
     if snake_pos[1] < 0 or snake_pos[1] > frame_size_y-10:
         game_over()
+        choice = input('Do you want to continue! Enter 1 for continue! and 0 for exit!')
+        if(choice == '1'):
+            pygame.display.update()
+            gameRepeat()
+            continue
+        else:
+            exit()
+            #pygame.quit()
+            #sys.exit()
+
     # Touching the snake body
     for block in snake_body[1:]:
         if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
