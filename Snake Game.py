@@ -85,7 +85,42 @@ def show_score(choice, color, font, size):
         score_rect.midtop = (frame_size_x/2, frame_size_y/1.25)
     game_window.blit(score_surface, score_rect)
     # pygame.display.flip()
+    
+def start_screen():
+    game_window.fill(black)
+    my_font = pygame.font.SysFont('times new roman', 50)
+    title_surface = my_font.render('SNAKE EATER', True, green)
+    title_rect = title_surface.get_rect()
+    title_rect.midtop = (frame_size_x/2, frame_size_y/4)
 
+    instruction_font = pygame.font.SysFont('times new roman', 30)
+    instruction_surface = instruction_font.render('Press SPACE to start', True, white)
+    instruction_rect = instruction_surface.get_rect()
+    instruction_rect.midtop = (frame_size_x/2, frame_size_y/2)
+
+    controls_surface = instruction_font.render('Use WASD or Arrow keys to move', True, white)
+    controls_rect = controls_surface.get_rect()
+    controls_rect.midtop = (frame_size_x/2, frame_size_y/1.5)
+
+    game_window.blit(title_surface, title_rect)
+    game_window.blit(instruction_surface, instruction_rect)
+    game_window.blit(controls_surface, controls_rect)
+    pygame.display.flip()
+
+waiting = True
+while waiting:
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            pygame.quit()
+            sys.exit()
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_SPACE:
+                waiting = False
+            if event.key == pygame.K_ESCAPE:
+                pygame.quit()
+                sys.exit()
+
+    start_screen()
 
 # Main logic
 while True:
