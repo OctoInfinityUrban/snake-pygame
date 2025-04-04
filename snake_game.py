@@ -86,14 +86,11 @@ def show_start_screen():
                 return
 
 # Score Display
-def show_score(choice, color, font, size):
+def show_score(color, font, size):
     score_font = pygame.font.SysFont(font, size)
     score_surface = score_font.render('Score : ' + str(score), True, color)
     score_rect = score_surface.get_rect()
-    if choice == 1:
-        score_rect.midtop = (frame_size_x/10, 15)
-    else:
-        score_rect.midtop = (frame_size_x/2, frame_size_y/1.25)
+    score_rect.topleft = (10, 10)
     game_window.blit(score_surface, score_rect)
 
 # Main Game Function
@@ -166,7 +163,7 @@ def main_game():
             if snake_pos[0] == block[0] and snake_pos[1] == block[1]:
                 game_over_screen()
 
-        show_score(1, white, 'consolas', 20)
+        show_score(white, 'consolas', 20)
         pygame.display.update()
         fps_controller.tick(difficulty)
 
