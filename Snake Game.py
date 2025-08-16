@@ -4,7 +4,7 @@ Made with PyGame
 """
 
 import pygame, sys,  time, random
-
+,
 
 # Difficulty settings
 # Easy      ->  10
@@ -169,3 +169,4 @@ while True:
     # Refresh rate
 
     fps_controller.tick(difficulty)
+
