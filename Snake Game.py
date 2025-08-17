@@ -3,7 +3,7 @@ Snake Eater
 Made with PyGame
 """
 
-import pygame, sys,  time, random
+import pygame, sys,  time, rando
 ,
 
 # Difficulty settings
@@ -169,4 +169,5 @@ while True:
     # Refresh rate
 
     fps_controller.tick(difficulty)
+
 
