@@ -6,8 +6,7 @@ Made with PyGame
 import pygame, sys,  time, rando
 ,
 
-# Difficulty settings
-# Easy      ->  10
+# Di
 # Medium    ->  25
 # Hard      ->  40
 # Harder    ->  60
@@ -169,5 +168,6 @@ while True:
     # Refresh rate
 
     fps_controller.tick(difficulty)
+
 
 
